@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+    <head>
+        <style>
+body {
+    font-family: sans-serif;
+} table {
+    width:97vw;
+    margin:auto;
+    background:grey;
+} td {
+    border:solid pink 2px;
+}
+    fieldset {
+        width:fit-content;
+    } form {
+        margin:auto;
+        /* background:blue; */
+        width:fit-content;
+        text-align: center;
+        margin-top:1vh;
+    } fieldset {
+        margin:0%;
+    } section, h1 {
+        width:fit-content;
+        margin:auto;
+        margin-bottom:2vh;
+    }
+        </style>
+    </head>
+    <body>
+
+        <div>
+
+<table>
+<th>time</th><th>name</th><th>massage</th><th>masseuse</th><th>length</th><th>phone</th><th>notes</th>
+<% for (let i = 0; i < data.length+1; i++) { %>
+<% if (data[i]) { %>
+
+<tr><td><%= data[i].time %></td><td><%= data[i].name %></td><td><%= data[i].massage %></td><td><%= data[i].masseuse %></td><td><%= data[i].duration %></td><td><%= data[i].phone %></td><td><%= data[i].notes %></td></tr>
+<% } %>
+
+<% }%>
+</table>
+        </div>
+        <form method='post' action='/makeAppointment'>
+            <legend>add Appointment</legend>
+        <fieldset>
+            <label>time:</label><input type='number' name='time'><br/>
+            <label>Name:</label><input name='name'><br/>
+            <label>Massage:</label><input name='massage'><br/>
+            <label>Masseuse/Masseur:</label><input name='masseuse'><br/>
+            <label>Duration:</label><input name='duration'><br/>
+            <label>Phone:</label><input name='phone'><br/>
+            <label>Notes:</label><input name='notes'><br/>
+            <input type='hidden' name='day' id='day'>
+        <input type='submit'><br/>
+        </fieldset>
+    </form>
+
+    </body>
+    <script>
+let cells = document.getElementsByTagName('td');
+let day = document.getElementById('day');
+
+day.value = window.location.pathname.replace(/\/schedule\//, '');
+
+
+window.addEventListener('DOMContentLoaded', () => {
+    let regex = new RegExp('\.5');
+    for (let i in cells) {
+        if (i % 7 == 0) {
+            parseFloat(cells[i].innerText) > 12 ? cells[i].innerText = parseFloat(cells[i].innerText) - 12 : cells[i].innerText = parseInt(cells[i].innerText)
+
+            if (regex.test(cells[i].innerText)) {
+                cells[i].innerText = cells[i].innerText.replace(/\.5/, ':30');
+            }
+        }
+
+    }
+
+});
+    </script>
+</html>

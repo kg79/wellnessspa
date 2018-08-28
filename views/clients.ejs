@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+    <head>
+<style>
+    body {
+        font-family:sans-serif;
+    } section {
+        background:rgb(4, 58, 71);
+        color:rgb(25, 255, 236);
+        width:fit-content;
+        text-align:center;
+        margin:auto;
+        padding:1%;
+        margin-top:1%;
+    } form {
+        background:blue;
+        color:white;
+        width:fit-content;
+    } table {
+        border-collapse:collapse;
+    } td {
+        border:solid 1px black;
+    } th {
+        color:rgb(177, 177, 221);
+        border:solid 1px rgb(25, 255, 236);
+    }
+</style>
+    </head>
+    <body>
+<!-- <section>
+<form>
+    <fieldset>
+        <legend>get data</legend>
+            <label>Search</label><input type='text'>
+    </fieldset>
+</form>
+<button>All</button>
+</section> -->
+<section>
+    <table cellpadding='3'>
+        <th>Name</th><th>visits</th><th>Address</th><th>Phone</th><th>email</th><th>birthday</th><th>occupation</th><th>emergency</th><th>emerge #</th><th>last massage</th><th>reason</th><th>medical</th><th>ailments</th><th>massage</th>
+            <% for (let i in data) { %>
+               <tr><td> <%= data[i].name %> </td><td> <%= data[i].date %> </td><td> <%= data[i].address %> </td><td> <%= data[i].phone %> </td><td> <%= data[i].email %> </td><td> <%= data[i].birthday %> </td><td> <%= data[i].occupation %> </td><td> <%= data[i].emergency %> </td><td> <%= data[i].emergencyPhone %> </td><td> <%= data[i].lastMassage %> </td><td> <%= data[i].reason %> </td><td> <%= data[i].medical %> </td><td><%= data[i].ailments %></td><td> <%= data[i].massage %> </td></tr>
+            <% } %>
+    </table>
+</section>
+<section>
+    <form method='post' action='/addClient'>
+        <legend>add client</legend>
+    <fieldset>
+        <label>Name:</label><input name='name'><br/>
+        <label>visits:</label><input name='date'><br/>
+        <label>address:</label><input name='address'><br/>
+        <label>phone:</label><input name='phone'><br/>
+        <label>email:</label><input name='email'><br/>
+        <label>birthday:</label><input name='birthday'><br/>
+        <label>occupation:</label><input name='occupation'><br/>
+        <label>emergency:</label><input name='emergency'><br/>
+        <label>emergency phone:</label><input name='emergencyPhone'><br/>
+        <label>last massage:</label><input name='lastMassage'><br/>
+        <label>reason:</label><input name='reason'><br/>
+        <label>medical:</label><input name='medical'><br/>
+        <label>ailments:</label><input name='ailments'><br/>
+        <label>massage:</label><input name='massage'><br/>
+    <input type='submit'><br/>
+    </fieldset>
+</form>
+</section>
+
+    </body>
+    <script>
+let things = document.getElementsByTagName('tr');
+
+        window.onclick = () => {
+            console.log(things.length)
+        }
+        
+    </script>
+</html>

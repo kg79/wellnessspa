@@ -1,0 +1,84 @@
+<!doctype html><html>
+    <head>
+<script src='./vue.js'></script>
+<style>
+    body {
+        font-family:sans-serif;
+    } section {
+        width:99vw;
+        background:blue;
+        color:white;
+        display:grid;
+        grid-template-columns:auto auto auto auto auto auto auto;
+        height:90vh;
+    } header {
+        display:flex;
+    } .indices {
+        border:solid 1px black;
+    } .daiz {
+        background:lime;
+        text-align:center;
+        width:14vw;
+    } .indy {
+        float:right;
+    } h3 {
+        padding:1%;
+        margin:auto;
+        width:fit-content;
+        background:black;
+        color:white;
+    } article {
+        display:inline;
+    }
+</style>
+    </head>
+    <body>
+            <h3>August 2018</h3>
+        <header id='daiz'>
+            <article v-for='dayz in days' class='daiz'> {{ dayz }} </article>
+        </header>
+        <section id='cal'>
+            <span v-for='(indy, index) in indices' class='indices'>
+                <div class='indy'> {{ indy }} </div>
+            </span>
+        </section>
+    </body>
+    <script>
+    const indices = document.getElementsByClassName('indices');
+
+    let cal = new Vue({
+        el:'#cal',
+        data:{
+            indices:[]
+        }
+    })
+    let daiz = new Vue({
+        el:'#daiz',
+        data:{
+            days:['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+        }
+    })
+    document.addEventListener('DOMContentLoaded', () => {
+        for (let i = 0; i < 3; i++) {
+            cal.indices.push(null);
+        }
+
+        for (let i = 1; i < 32; i++) {
+                cal.indices.push(i);
+        }
+
+    });
+
+window.onclick = e => {
+
+    let tex = `${document.body.firstChild.nextSibling.textContent.slice(0, 3)}${e.target.firstChild.textContent}`;
+    let ray = [];
+    for (let i in tex) {
+        if (tex[i] !== ' ') {
+            ray.push(tex[i].toLowerCase())
+        }
+    }
+    window.location.pathname = `/schedule/${ray.join('')}`;
+}
+    </script>
+</html>

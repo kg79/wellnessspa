@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+    <head>
+        <link rel='stylesheet' href='./index.css'>
+        <meta name='viewport' 
+     content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'/>
+    </head>
+    <body>
+        <header id='header'>
+            <img id='logo' src='logo.jpg'>
+            <img id='burger' src='ham.png'>
+        </header>
+        <main id='main'>
+            <span id='leftArrow'><</span>
+            <img id='front' src='front.jpg'>
+            <aside id='navigation'>
+                <ul>
+                    <li data-index='0'>
+                        schedule
+                    </li>
+                    <li data-index='1'>
+                        clients
+                    </li>
+                </ul>
+            </aside>
+        </main>
+        <footer id='footer'>
+<div>
+    2417 Market Street, Galveston Tx 77550
+</div>
+<div>
+    409-539-5962
+</div>
+<div>
+    10am-9pm
+</div>
+        </footer>
+    </body>
+    <script>
+        const header = document.getElementById('header');
+        const logo = document.getElementById('logo');
+        const burger = document.getElementById('burger');
+        const main = document.getElementById('main');
+        const front = document.getElementById('front');
+        const leftArrow = document.getElementById('leftArrow');
+        const navigation = document.getElementById('navigation');
+        const footer = document.getElementById('footer');
+        const ides = document.getElementsByTagName('div');
+        const height = window.innerHeight;
+        const width = window.innerWidth;
+        let footerHeight = `${height*(1/6)}`;
+
+    window.addEventListener('DOMContentLoaded', () => {
+        header.style.height = `${height*(1/6)}px`;
+        main.style.height = `${height*(2/3)}px`;
+        footer.style.height = footerHeight+'px';
+
+        logo.style.height = `${height*(1/6)}px`;
+        front.style.height = `${height*(2/3)}px`;
+
+        for (let i = 0; i < 3; i++) {
+            ides[i].style.height = `${footerHeight * (1/3)}px`;
+            ides[i].style.width = `${width}px`;
+        }
+    })
+    let clicked = false;
+    burger.onclick = () => {
+
+        if (clicked === false) {
+            navigation.style.visibility = 'visible';
+            clicked = true;
+        } else {
+            navigation.style.visibility = 'hidden';
+            clicked = false;
+        }
+        
+    }
+    navigation.onclick = e => {
+        switch (e.target.dataset.index ) {
+            case '0':
+            window.location.pathname = '/calendar';
+            break;
+            case '1':
+            window.location.pathname = '/clients';
+            break;
+        }
+    }
+    main.onmouseover = e => {
+        leftArrow.style.left = `${front.getBoundingClientRect().width*.04}px`;
+        leftArrow.style.top = `-${front.getBoundingClientRect().height*.5}px`;
+        leftArrow.style.visibility = 'visible';
+    }
+    </script>
+</html>
