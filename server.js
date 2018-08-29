@@ -4,7 +4,8 @@ const PORT = process.env.PORT || 8080;
 const serveStatic = require('serve-static');
 const path = require('path');
 const MongoClient = require('mongodb').MongoClient;
-const url = process.env.MONGOLAB_URI;
+
+const url = process.env.MONGODB_URI;
 
 
 const bodyParser = require('body-parser');
